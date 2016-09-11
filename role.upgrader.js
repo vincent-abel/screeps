@@ -14,6 +14,7 @@ run: function(creep) {
             creep.moveTo(creep.room.controller);
         }
     }
+    
     else {
         var sources = creep.room.find(FIND_SOURCES);
         if(creep.harvest(creep.pos.findClosestByPath(sources)) == ERR_NOT_IN_RANGE) {
