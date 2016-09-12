@@ -23,7 +23,10 @@ var roleHarvester = {
                 }
             }
         }
-	}
+	},
+        getBodyParts: function() {
+      return [WORK,WORK,CARRY,MOVE];
+    }
 };
 
 module.exports = roleHarvester;

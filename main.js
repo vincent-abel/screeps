@@ -18,10 +18,10 @@ module.exports.loop = function () {
     console.log('Harvesters: ' + harvesters.length);
 
     if(harvesters.length < 8) {
-        var newName = Game.spawns['Spawn1'].createCreep([WORK,WORK,CARRY,MOVE], 'Harvester'+Game.time, {role: 'harvester'});
+        var newName = Game.spawns['Spawn1'].createCreep(roleHarvester.getBodyParts(), 'Harvester'+Game.time, {role: 'harvester'});
     }
     else if(upgraders.length<2) {
-        var newName = Game.spawns['Spawn1'].createCreep([WORK,WORK,CARRY,MOVE], 'Upgrader'+Game.time, {role: 'upgrader'});
+        var newName = Game.spawns['Spawn1'].createCreep(roleUpgrader.getBodyParts(), 'Upgrader'+Game.time, {role: 'upgrader'});
     }
     else if(builders.length < 2) {
         var newName = Game.spawns['Spawn1'].createCreep(roleBuilder.getBodyParts(), 'Builder'+Game.time, {role: 'builder'});
