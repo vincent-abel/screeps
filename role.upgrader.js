@@ -23,7 +23,7 @@ run: function(creep) {
         }
     },
     getBodyParts: function() {
-      return [WORK,WORK,CARRY,CARRY,MOVE,MOVE];
+      return [WORK,WORK,WORK,CARRY,CARRY,MOVE,MOVE];
     }
 };
 
