@@ -1,3 +1,5 @@
+var roleRepair = require('role.repair');
+
 var roleBuilder = {
 
     /** @param {Creep} creep **/
@@ -15,10 +17,16 @@ var roleBuilder = {
 	    if(creep.memory.building) {
 	        var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
             if(targets.length) {
-                
-                if(creep.build(creep.pos.findClosestByPath(targets)) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(creep.pos.findClosestByPath(targets));
+                 if(creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(targets[0]);
                 }
+                //if(creep.build(creep.pos.findClosestByPath(targets)) == ERR_NOT_IN_RANGE) {
+                //    creep.moveTo(creep.pos.findClosestByPath(targets));
+                //}
+            }
+            else
+            {
+                roleRepair.run(creep);
             }
 	    }
         else {
@@ -28,7 +36,7 @@ var roleBuilder = {
                         return (structure.structureType == STRUCTURE_EXTENSION ||
                                 structure.structureType == STRUCTURE_SPAWN) && structure.energy == structure.energyCapacity;
                     }
-            });console.log(creep.pos.findClosestByPath(sources));
+            });
            if (sources.length){
                if(creep.withdraw(creep.pos.findClosestByPath(sources),RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                    creep.moveTo(creep.pos.findClosestByPath(sources));
@@ -36,6 +44,7 @@ var roleBuilder = {
            }
            else {
                 var sources = creep.room.find(FIND_SOURCES);
+               
                 if(creep.harvest(creep.pos.findClosestByPath(sources)) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(creep.pos.findClosestByPath(sources));
                 }
@@ -43,7 +52,7 @@ var roleBuilder = {
 	    }
 	},
     getBodyParts: function() {
-      return [WORK,WORK,CARRY,MOVE];
+      return [WORK,WORK,CARRY,CARRY,MOVE,MOVE];
     }
 };
 

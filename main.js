@@ -1,6 +1,7 @@
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
+var roleRepair = require('role.repair');
 
 module.exports.loop = function () {
 
@@ -17,7 +18,7 @@ module.exports.loop = function () {
 
     console.log('Harvesters: ' + harvesters.length);
 
-    if(harvesters.length < 8) {
+    if(harvesters.length < 10) {
         var newName = Game.spawns['Spawn1'].createCreep(roleHarvester.getBodyParts(), 'Harvester'+Game.time, {role: 'harvester'});
     }
     else if(upgraders.length<2) {
@@ -40,6 +41,9 @@ module.exports.loop = function () {
         }
         if(creep.memory.role == 'builder') {
             roleBuilder.run(creep);
+        }
+        if(creep.memory.role == 'repair') {
+            roleRepair.run(creep);
         }
     }
 }
