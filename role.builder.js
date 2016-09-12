@@ -22,10 +22,24 @@ var roleBuilder = {
             }
 	    }
         else {
-            var sources = creep.room.find(FIND_SOURCES);
-            if(creep.harvest(creep.pos.findClosestByPath(sources)) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(creep.pos.findClosestByPath(sources));
-            }
+            
+            var sources = creep.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_EXTENSION ||
+                                structure.structureType == STRUCTURE_SPAWN) && structure.energy == structure.energyCapacity;
+                    }
+            });console.log(creep.pos.findClosestByPath(sources));
+           if (sources.length){
+               if(creep.withdraw(creep.pos.findClosestByPath(sources),RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                   creep.moveTo(creep.pos.findClosestByPath(sources));
+               }
+           }
+           else {
+                var sources = creep.room.find(FIND_SOURCES);
+                if(creep.harvest(creep.pos.findClosestByPath(sources)) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(creep.pos.findClosestByPath(sources));
+                }
+           }
 	    }
 	},
     getBodyParts: function() {
