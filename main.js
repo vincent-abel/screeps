@@ -20,16 +20,16 @@ module.exports.loop = function () {
     console.log('Harvesters: ' + harvesters.length + ' Upgraders: ' + upgraders.length + ' Builders: ' + builders.length + ' Repairs: ' + repairs.length);
 
     if(harvesters.length < 15) {
-        var newName = Game.spawns['Spawn1'].createCreep(roleHarvester.getBodyParts(), 'Ha'+Game.time, {role: 'harvester'});
+        var newName = Game.spawns['Spawn1'].createCreep(roleHarvester.getBodyParts(), 'Ha'+(Game.time-13610000), {role: 'harvester'});
     }
-    else if(upgraders.length<4) {
-        var newName = Game.spawns['Spawn1'].createCreep(roleUpgrader.getBodyParts(), 'Up'+Game.time, {role: 'upgrader'});
+    else if(upgraders.length<8) {
+        var newName = Game.spawns['Spawn1'].createCreep(roleUpgrader.getBodyParts(), 'Up'+(Game.time-13610000), {role: 'upgrader'});
     }
     else if(builders.length < 2) {
-        var newName = Game.spawns['Spawn1'].createCreep(roleBuilder.getBodyParts(), 'B'+Game.time, {role: 'builder'});
+        var newName = Game.spawns['Spawn1'].createCreep(roleBuilder.getBodyParts(), 'Bu'+(Game.time-13610000), {role: 'builder'});
     }
     else if(repairs.length < 1) {
-        var newName = Game.spawns['Spawn1'].createCreep(roleBuilder.getBodyParts(), 'R'+Game.time, {role: 'repair'});
+        var newName = Game.spawns['Spawn1'].createCreep(roleBuilder.getBodyParts(), 'Re'+(Game.time-13610000), {role: 'repair'});
     }
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];

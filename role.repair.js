@@ -6,6 +6,7 @@
  * var mod = require('role.repair');
  * mod.thing == 'a thing'; // true
  */
+var roleUpgrader = require('role.upgrader');
 var roleRepair = {
     run: function(creep) {
         if(creep.memory.building && creep.carry.energy == 0) {
@@ -34,7 +35,7 @@ var roleRepair = {
             
             } 
             else {
-            
+            roleUpgrader.run(creep);
                  creep.say("Des heures sup'!");
             
             }
