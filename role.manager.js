@@ -1,4 +1,4 @@
-var roleBuilder = {
+var roleManager = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
@@ -27,10 +27,7 @@ var roleBuilder = {
                 creep.moveTo(creep.pos.findClosestByPath(sources));
             }
 	    }
-	},
-    getBodyParts: function() {
-      return [WORK,WORK,CARRY,MOVE];
-    }
+	}
 };
 
-module.exports = roleBuilder;
+module.exports = roleManager;
