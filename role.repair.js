@@ -20,7 +20,7 @@ var roleRepair = {
         if(creep.memory.building) {
             var structure = creep.room.find(FIND_STRUCTURES, {
             filter: function(structure) {
-                return structure.hits < structure.hitsMax / 2;
+                return structure.hits <600;
             }
             });
            
@@ -30,7 +30,7 @@ var roleRepair = {
                     creep.say('moving');
                 }
                creep.say('repairing');
-                console.log(roadToRepair);
+               // console.log(roadToRepair);
                 // perhaps check the results again?
             
             } 
