@@ -29,7 +29,7 @@ var roleHarvester = {
         }
 	},
         getBodyParts: function() {
-      return [WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE,MOVE];
+      return [WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE,MOVE];
     }
 };
 
