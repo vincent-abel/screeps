@@ -20,7 +20,7 @@ var roleRepair = {
         if(creep.memory.building) {
             var structure = creep.room.find(FIND_STRUCTURES, {
             filter: function(structure) {
-                return structure.hits <600;
+                return structure.hits < 2500;
             }
             });
            

@@ -19,7 +19,7 @@ module.exports.loop = function () {
 
     console.log('Harvesters: ' + harvesters.length + ' Upgraders: ' + upgraders.length + ' Builders: ' + builders.length + ' Repairs: ' + repairs.length);
 
-    if(harvesters.length < 15) {
+    if(harvesters.length < 10) {
         var newName = Game.spawns['Spawn1'].createCreep(roleHarvester.getBodyParts(), 'Ha'+(Game.time-13610000), {role: 'harvester'});
     }
     else if(upgraders.length<8) {
@@ -41,7 +41,7 @@ module.exports.loop = function () {
             roleHarvester.run(creep);
         }
         if(creep.memory.role == 'upgrader') {
-          roleBuilder.run(creep);
+          roleUpgrader.run(creep);
         }
         if(creep.memory.role == 'builder') {
             roleBuilder.run(creep);
