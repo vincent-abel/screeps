@@ -1,14 +1,7 @@
 var roleManager = require('role.manager');
-
+var toolsmain = require('tools.main');
 
 module.exports.loop = function () {
-
-    for(var name in Memory.creeps) {
-        if(!Game.creeps[name]) {
-            delete Memory.creeps[name];
-            console.log('Clearing non-existing creep memory:', name);
-        }
-    }
-
-   roleManager.run(Game);
+    toolsmain.cleanmem(Game,Memory);
+    roleManager.run(Game);
 }
