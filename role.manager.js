@@ -18,10 +18,10 @@ var roleManager = {
         
         console.log('Harvesters: ' + harvesters.length + ' Upgraders: ' + upgraders.length + ' Builders: ' + builders.length + ' Repairs: ' + repairs.length);
         
-        if(harvesters.length < 10) {
+        if(harvesters.length < 5) {
             var newName = Game.spawns['Spawn1'].createCreep(roleManager.getBodyParts(my_room), 'Ha'+(Game.time-13610000), {role: 'harvester'});
         }
-        else if(upgraders.length<8) {
+        else if(upgraders.length<3) {
             var newName = Game.spawns['Spawn1'].createCreep(roleManager.getBodyParts(my_room), 'Up'+(Game.time-13610000), {role: 'upgrader'});
         }
         else if(builders.length < 2) {
