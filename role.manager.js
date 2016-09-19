@@ -18,13 +18,13 @@ var roleManager = {
         
         console.log('Harvesters: ' + harvesters.length + ' Upgraders: ' + upgraders.length + ' Builders: ' + builders.length + ' Repairs: ' + repairs.length);
         
-        if(harvesters.length < 5) {
+        if(harvesters.length < 3) {
             var newName = Game.spawns['Spawn1'].createCreep(roleManager.getBodyParts(my_room), 'Ha'+(Game.time-13610000), {role: 'harvester'});
         }
-        else if(upgraders.length<3) {
+        else if(upgraders.length<1) {
             var newName = Game.spawns['Spawn1'].createCreep(roleManager.getBodyParts(my_room), 'Up'+(Game.time-13610000), {role: 'upgrader'});
         }
-        else if(builders.length < 2) {
+        else if(builders.length < 1) {
             var newName = Game.spawns['Spawn1'].createCreep(roleManager.getBodyParts(my_room), 'Bu'+(Game.time-13610000), {role: 'builder'});
         }
         else if(repairs.length < 1) {
