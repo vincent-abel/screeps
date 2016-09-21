@@ -12,15 +12,13 @@ var roleManager = {
             var my_room = Game.rooms[room_it];
             break;
         }
-         for(var name in Game.creeps) {
-            var creep = Game.creeps[name];
-            
-        }
+
         var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
         var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
         var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');   
         var repairs = _.filter(Game.creeps, (creep) => creep.memory.role == 'repair');
-           if(harvesters.length < 3) {
+        var attackers = _.filter(Game.creeps, (creep) => creep.memory.role == 'attacker');
+           if(harvesters.length < 6) {
             var newName = Game.spawns['Spawn1'].createCreep(roleManager.getBodyParts(my_room), 'Ha'+(Game.time-13610000), {role: 'harvester'});
         }
         else if(upgraders.length<1) {
@@ -32,14 +30,19 @@ var roleManager = {
         else if(repairs.length < 1) {
             var newName = Game.spawns['Spawn1'].createCreep(roleManager.getBodyParts(my_room), 'Re'+(Game.time-13610000), {role: 'repair'});
         }
-       
-        
+        else if(attackers.length < 1 && (my_room.find(FIND_HOSTILE_CREEPS)).length>1) {
+            var newName = Game.spawns['Spawn1'].createCreep(roleAttacker.getBodyParts(my_room), 'att'+(Game.time-13610000), {role: 'attacker'});
+        }
+       console.log("room" + my_room + " " + my_room.find(FIND_HOSTILE_CREEPS).length);
+        for(var name in Game.creeps) {
+            var creep = Game.creeps[name];
+            
         if(!creep.memory.role){
                 creep.memory.role='harvester';
-            roleHarvester.run(creep);
+                roleHarvester.run(creep);
             }
             if(creep.memory.role == 'attacker') {
-                roleAttack.run(Game);
+                roleAttacker.run(Game,creep);
             }
             if(creep.memory.role == 'harvester') {
                 roleHarvester.run(creep);
@@ -54,10 +57,9 @@ var roleManager = {
                 roleRepair.run(creep);
             }
 
-        console.log('Harvesters: ' + harvesters.length + ' Upgraders: ' + upgraders.length + ' Builders: ' + builders.length + ' Repairs: ' + repairs.length);
+        //console.log('Harvesters: ' + harvesters.length + ' Upgraders: ' + upgraders.length + ' Builders: ' + builders.length + ' Repairs: ' + repairs.length);
         
-     
-
+        }
     },
     getBodyParts: function(myroom){
         var en=myroom.energyCapacityAvailable;

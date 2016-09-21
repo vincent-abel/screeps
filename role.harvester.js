@@ -1,4 +1,3 @@
-var roleUpgrader = require('role.upgrader');
 var roleHarvester = {
 
     /** @param {Creep} creep **/
@@ -22,9 +21,6 @@ var roleHarvester = {
                 if(creep.transfer(creep.pos.findClosestByPath(targets), RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(creep.pos.findClosestByPath(targets));
                 }
-            }
-            else {
-                roleUpgrader.run(creep);
             }
         }
 	},

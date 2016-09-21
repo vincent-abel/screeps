@@ -8,11 +8,14 @@
  */
 
 var roleAttack = {
-    run: function (myGame){
-        var attacker = myGame.creeps.Attacker1;
-    var enemies= attacker.room.find(myGame.HOSTILE_CREEPS);
-    attacker.moveTo(enemies[0]);
-    attacker.attack(enemies[0]);
+    run: function (myGame,creep){
+var target = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+if(target) {
+    if(creep.attack(target) == ERR_NOT_IN_RANGE) {
+        creep.moveTo(target);
+    }
+}
+
     },
    getBodyParts: function(myroom){
       return [TOUGH,TOUGH,ATTACK,ATTACK,ATTACK,MOVE,CARRY,MOVE,MOVE];
