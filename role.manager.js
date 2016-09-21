@@ -2,6 +2,7 @@ var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleRepair = require('role.repair');
+var roleAttacker = require('role.attack');
 
 var roleManager = {
 
@@ -11,14 +12,15 @@ var roleManager = {
             var my_room = Game.rooms[room_it];
             break;
         }
+         for(var name in Game.creeps) {
+            var creep = Game.creeps[name];
+            
+        }
         var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
         var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
         var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');   
         var repairs = _.filter(Game.creeps, (creep) => creep.memory.role == 'repair');
-        
-        console.log('Harvesters: ' + harvesters.length + ' Upgraders: ' + upgraders.length + ' Builders: ' + builders.length + ' Repairs: ' + repairs.length);
-        
-        if(harvesters.length < 3) {
+           if(harvesters.length < 3) {
             var newName = Game.spawns['Spawn1'].createCreep(roleManager.getBodyParts(my_room), 'Ha'+(Game.time-13610000), {role: 'harvester'});
         }
         else if(upgraders.length<1) {
@@ -30,11 +32,14 @@ var roleManager = {
         else if(repairs.length < 1) {
             var newName = Game.spawns['Spawn1'].createCreep(roleManager.getBodyParts(my_room), 'Re'+(Game.time-13610000), {role: 'repair'});
         }
-        for(var name in Game.creeps) {
-            var creep = Game.creeps[name];
-            if(!creep.memory.role){
+       
+        
+        if(!creep.memory.role){
                 creep.memory.role='harvester';
             roleHarvester.run(creep);
+            }
+            if(creep.memory.role == 'attacker') {
+                roleAttack.run(Game);
             }
             if(creep.memory.role == 'harvester') {
                 roleHarvester.run(creep);
@@ -48,7 +53,11 @@ var roleManager = {
             if(creep.memory.role == 'repair') {
                 roleRepair.run(creep);
             }
-        }
+
+        console.log('Harvesters: ' + harvesters.length + ' Upgraders: ' + upgraders.length + ' Builders: ' + builders.length + ' Repairs: ' + repairs.length);
+        
+     
+
     },
     getBodyParts: function(myroom){
         var en=myroom.energyCapacityAvailable;
