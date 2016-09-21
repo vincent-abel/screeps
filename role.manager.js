@@ -30,7 +30,7 @@ var roleManager = {
         else if(repairs.length < 1) {
             var newName = Game.spawns['Spawn1'].createCreep(roleManager.getBodyParts(my_room), 'Re'+(Game.time-13610000), {role: 'repair'});
         }
-        else if(attackers.length < 1 && (my_room.find(FIND_HOSTILE_CREEPS)).length>1) {
+        else if(attackers.length < 1 && (my_room.find(FIND_HOSTILE_CREEPS)).length>0) {
             var newName = Game.spawns['Spawn1'].createCreep(roleAttacker.getBodyParts(my_room), 'att'+(Game.time-13610000), {role: 'attacker'});
         }
        console.log("room" + my_room + " " + my_room.find(FIND_HOSTILE_CREEPS).length);
