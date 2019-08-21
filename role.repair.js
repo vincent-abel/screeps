@@ -15,7 +15,7 @@ var roleRepair = {
                 return structure.hits < 2500;
             }
             });
-           
+
             if (structure.length){
                 if(creep.repair(creep.pos.findClosestByPath(structure)) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(creep.pos.findClosestByPath(structure));
@@ -24,16 +24,16 @@ var roleRepair = {
                creep.say('repairing');
                // console.log(roadToRepair);
                 // perhaps check the results again?
-            
-            } 
-            else {
+
+            }
+           else {
             roleUpgrader.run(creep);
                  creep.say("Des heures sup'!");
-            
+
             }
         }
         else {
-            
+
             var sources = creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_EXTENSION ||
@@ -47,7 +47,7 @@ var roleRepair = {
            }
            else {
                 var sources = creep.room.find(FIND_SOURCES);
-               
+
                 if(creep.harvest(creep.pos.findClosestByPath(sources)) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(creep.pos.findClosestByPath(sources));
                 }
